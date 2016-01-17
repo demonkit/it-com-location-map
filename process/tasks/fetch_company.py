@@ -1,9 +1,9 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 
-from gevent import monkey
-monkey.patch_all()
+# from gevent import monkey
+# monkey.patch_all()
 
 import json
 
@@ -11,15 +11,15 @@ import requests
 from bs4 import BeautifulSoup
 from celery.utils.log import get_task_logger
 
-from process.app import app
+from process.celery import app
 from process import exceptions
-# from .. import config
 
 
 logger = get_task_logger(__name__)
 
 
-@app.task(ignore_result=True)
+# @app.task(ignore_result=True)
+@app.task
 def fetch(args):
     for item in args:
         url = item['url']
