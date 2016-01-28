@@ -11,16 +11,15 @@ import requests
 from bs4 import BeautifulSoup
 from celery.utils.log import get_task_logger
 
-from process.celery import app
+from process.celeryapp import app
 from process import exceptions
 
 
 logger = get_task_logger(__name__)
 
 
-# @app.task(ignore_result=True)
 @app.task
-def fetch(args):
+def fetch_company(args):
     for item in args:
         url = item['url']
         save_file = item['save_file']
@@ -47,3 +46,4 @@ def fetch(args):
                 logger.error("get json from url %s error: %s",
                              url, err)
         logger.info("fetching url %s done", url)
+    return None
