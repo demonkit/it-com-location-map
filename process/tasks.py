@@ -28,6 +28,7 @@ def fetch_company(args):
             if resp.status_code != 200:
                 raise exceptions.HttpError("got unexpected status code")
             html = resp.content
+            logger.info("get %s get url status %s", url, resp.status_code)
         except exceptions.HttpError:
             logger.info("get %s code for url: %s",
                         resp.status_code,

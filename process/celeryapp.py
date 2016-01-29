@@ -15,7 +15,7 @@ app = Celery('process',
 # Optional configuration, see the application user guide.
 app.conf.update(
     CELERY_TASK_RESULT_EXPIRES=3600,
-    CELERY_RESULT_BACKEND='amqp://guest:guest@10.16.45.109:5672'
+    CELERY_RESULT_BACKEND='amqp://guest@10.16.45.109:5672//'
 )
 
 
