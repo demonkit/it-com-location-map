@@ -4,6 +4,8 @@
 
 import os
 
+import pro_conf
+
 
 BASE_DIR = os.path.dirname(
         os.path.abspath(__file__))
@@ -13,5 +15,5 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 
 # process celery configuration
-BROKER = 'amqp://localhost:5672'
-BACKEND = BROKER
+BROKER = pro_conf.BROKER
+BACKEND = pro_conf.BACKEND

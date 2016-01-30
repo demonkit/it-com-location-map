@@ -61,3 +61,6 @@ data/*.json
 
 # pid
 *.pid
+
+# config file
+pro_conf.py
