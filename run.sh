@@ -1,0 +1,1 @@
+celery worker -A process.celeryapp:app -l info --logfile=logs/process.log --pool=solo
