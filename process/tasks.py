@@ -24,7 +24,7 @@ def fetch_company(args):
         url = item['url']
         save_file = item['save_file']
         try:
-            resp = requests.get(url)
+            resp = requests.get(url, allow_redirects=False)
             if resp.status_code != 200:
                 raise exceptions.HttpError("got unexpected status code")
             html = resp.content

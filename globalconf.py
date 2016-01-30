@@ -10,3 +10,8 @@ BASE_DIR = os.path.dirname(
 
 
 DATA_DIR = os.path.join(BASE_DIR, 'data')
+
+
+# process celery configuration
+BROKER = 'amqp://guest:guest@10.16.45.109:5672'
+BACKEND = BROKER

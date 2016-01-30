@@ -5,7 +5,7 @@
 from process.tasks import fetch_company
 
 args = []
-for i in range(200, 1000):
+for i in range(2000, 3000):
     arg = {
         "url": "http://www.lagou.com/gongsi/%s.html" % i,
         "save_file": "./data/%s.json" % i
@@ -16,7 +16,7 @@ for i in range(200, 1000):
 t1 = fetch_company.delay(args)
 
 args = []
-for i in range(100, 200):
+for i in range(1000, 2000):
     arg = {
         "url": "http://www.lagou.com/gongsi/%s.html" % i,
         "save_file": "./data/%s.json" % i
@@ -24,3 +24,5 @@ for i in range(100, 200):
     args.append(arg)
 
 t2 = fetch_company.delay(args)
+
+# 2016-01-30 14:14 done with 2999
