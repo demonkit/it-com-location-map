@@ -6,12 +6,12 @@ from __future__ import absolute_import
 
 from celery import Celery
 
-import globalconf
+import config
 
 
 app = Celery('process',
-             broker=globalconf.BROKER,
-             backend=globalconf.BACKEND,
+             broker=config.BROKER,
+             backend=config.BACKEND,
              include=['process.tasks'])
 
 # Optional configuration, see the application user guide.

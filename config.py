@@ -17,3 +17,7 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')
 # process celery configuration
 BROKER = pro_conf.BROKER
 BACKEND = pro_conf.BACKEND
+
+
+# database config
+SQLALCHEMY_DATABASE_URI = "sqlite://%s/%s" % (BASE_DIR, "it_company.db")
