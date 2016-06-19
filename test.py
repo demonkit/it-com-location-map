@@ -2,10 +2,12 @@
 # -*- coding: utf-8 -*-
 
 
+import sys
+
 from process.tasks import fetch_company
 
 args = []
-for i in range(2000, 3000):
+for i in range(1, 20):
     arg = {
         "url": "http://www.lagou.com/gongsi/%s.html" % i,
         "save_file": "./data/%s.json" % i
@@ -13,7 +15,10 @@ for i in range(2000, 3000):
     args.append(arg)
 
 
-t1 = fetch_company.delay(args)
+t1 = fetch_company(args)
+print
+
+sys.exit(0)
 
 args = []
 for i in range(1000, 2000):

@@ -6,18 +6,12 @@ from __future__ import absolute_import
 
 from celery import Celery
 
-import config
+from . import celeryconfig
 
 
-app = Celery('process',
-             broker=config.BROKER,
-             backend=config.BACKEND,
-             include=['process.tasks'])
+app = Celery('process')
 
-# Optional configuration, see the application user guide.
-app.conf.update(
-    CELERY_TASK_RESULT_EXPIRES=3600,
-)
+app.config_from_object(celeryconfig)
 
 
 if __name__ == '__main__':

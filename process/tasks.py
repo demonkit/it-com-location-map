@@ -1,9 +1,9 @@
 #!/usr/bin/python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
-# from gevent import monkey
-# monkey.patch_all()
+from gevent import monkey
+monkey.patch_all()
 
 import json
 
@@ -29,10 +29,10 @@ def fetch_company(args):
                 raise exceptions.HttpError("got unexpected status code")
             html = resp.content
             logger.info("get %s get url status %s", url, resp.status_code)
-        except exceptions.HttpError:
-            logger.info("get %s code for url: %s",
-                        resp.status_code,
-                        url)
+        # except exceptions.HttpError:
+        #     logger.info("get %s code for url: %s",
+        #                 resp.status_code,
+        #                 url)
         except Exception as err:
             logger.error("fetching url %s error: %s",
                          url, err)

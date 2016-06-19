@@ -4,19 +4,16 @@
 
 import os
 
-import pro_conf
 
-
-BASE_DIR = os.path.dirname(
-        os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 
 # process celery configuration
-BROKER = pro_conf.BROKER
-BACKEND = pro_conf.BACKEND
+BROKER = "amqp://10.16.45.109:55672//"
+BACKEND = "amqp://10.16.45.109:55672//"
 
 
 # database config

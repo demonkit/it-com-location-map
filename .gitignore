@@ -64,3 +64,4 @@ data/*.json
 
 # config file
 pro_conf.py
+.idea/
