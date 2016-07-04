@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from display.databases import db
+from app import db
 
 
 class Company(db.Model):
@@ -31,4 +31,4 @@ class Location(db.Model):
     latitude = db.Column(db.Float)
 
 
-db.create_all()
+# db.create_all()

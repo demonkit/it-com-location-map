@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from display import app
+from app import app
 from display.models import Company, Location
 
 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>点数据展示</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../static/css/style.css"/>
+    <script type="text/javascript"
+            src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<script type="text/javascript" src="/static/js/Mapv.js"></script>
+<script type="text/javascript" src="/static/js/loadmap.js"></script>
+
+<script type="text/javascript">
+    bmap.centerAndZoom(new BMap.Point(116.395645, 39.929986), 12); // 初始化地图,设置中心点坐标和地图级别
+
+    // 第一步创建mapv示例
+    var mapv = new Mapv({
+        map: bmap  // 百度地图的map实例
+    });
+
+    var map_data = [];
+    $.get("/compslocs/", function (data) {
+        for (var i = 0; i <= data.length; i++) {
+            var item = data[i];
+            if (item[0] != 0 && item[1] != 0) {
+                map_data.concat(item);
+            }
+        }
+    });
+
+    var layer = new Mapv.Layer({
+//        mapv: mapv, // 对应的mapv实例
+        zIndex: 1, // 图层层级
+        dataType: 'point', // 数据类型，点类型
+        data: map_data,
+        dataRangeControl: false, // 值阈控件
+        drawType: 'simple', // 展示形式
+        drawOptions: { // 绘制参数
+            fillStyle: 'rgba(200, 200, 50, 1)', // 填充颜色
+            //strokeStyle: 'rgba(0, 0, 255, 1)', // 描边颜色
+            //lineWidth: 4, // 描边宽度
+            shadowColor: 'rgba(255, 255, 255, 1)', // 投影颜色
+            shadowBlur: 35,  // 投影模糊级数
+            globalCompositeOperation: 'lighter', // 颜色叠加方式
+            size: 4 // 半径
+        }
+    });
+
+    layer.setMapv(mapv);
+
+</script>
+
+</body>
+
+</html>

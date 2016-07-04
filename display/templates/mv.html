@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>create a map</title>
+</head>
+<body>
+
+<div id="map"></div>
+<script type="text/javascript"
+        src="../static/js/jquery-3.0.0.min.js"></script>
+
+<script type="text/javascript"
+        src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+<script type="text/javascript"
+        src="../static/js/Mapv.js"></script>
+<script type="text/javascript"
+        src="../static/js/example.js"></script>
+
+<!--<script type="text/javascript" src="static/js/Mapv.js"></script>-->
+
+<script type="text/javascript">
+    // 创建Map实例
+    var bmap = new BMap.Map('map', {
+        enableMapClick: false,
+        minZoom: 4
+        //vectorMapLevel: 3
+    });
+
+    bmap.enableScrollWheelZoom(); // 启用滚轮放大缩小
+
+    bmap.getContainer().style.background = '#081734';
+    bmap.setMapStyle({
+        styleJson: []
+    });
+    // 初始化地图,设置中心点坐标和地图级别
+    bmap.centerAndZoom(new BMap.Point(105.403119, 38.028658), 5);
+
+
+    // 第一步创建mapv示例
+    var mapv = new Mapv({
+        map: bmap  // 百度地图的map实例
+    });
+    // 创建一个图层
+    var layer = new Mapv.Layer({
+        zIndex: 3, // 图层的层级
+        mapv: mapv, // 对应的mapv
+        dataType: 'point', // 数据类型，point:点数据类型,polyline:线数据类型,polygon:面数据类型
+        //数据，格式如下
+        data: [
+            {
+                lng: 113.46507, // 经度
+                lat: 28.929101, // 纬度
+                count: 1 // 当前点的权重值
+            },
+            {
+                lng: 113.43507,
+                lat: 28.909101,
+                count: 2
+            }
+        ],
+        drawType: 'simple', // 渲染数据方式, simple:普通的打点, [更多查看类参考](https://github.com/huiyan-fe/mapv/wiki/%E7%B1%BB%E5%8F%82%E8%80%83)
+        // 渲染数据参数
+        drawOptions: {
+            fillStyle: "rgba(255, 255, 50, 1)",  // 填充颜色
+            strokeStyle: "rgba(50, 50, 255, 0.8)", // 描边颜色，不传就不描边
+            lineWidth: 5, // 描边宽度
+            radius: 5, // 半径大小
+            unit: 'px' // 半径对应的单位，px:默认值，屏幕像素单位,m:米,对应地图上的大约距离,18级别时候1像素大约代表1米
+        }
+    });
+
+</script>
+</body>
+
+</html>
