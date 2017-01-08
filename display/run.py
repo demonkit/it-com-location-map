@@ -1,9 +1,6 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
-
 from app import app
-from models import Company, Location
+
+from models import Location
 
 
 @app.route("/compsloc/")
@@ -16,11 +13,8 @@ def companiy_loc():
             "lng": loc.longitude,
             "lat": loc.latitude
         })
-    return locs
+    return str(locs)
 
 
-@app.route("/companies")
-def company_list():
-    companies = Company.query.all()
-    print companies
-    return
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", debug=True)

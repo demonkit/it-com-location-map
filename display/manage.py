@@ -4,13 +4,13 @@ from flask.ext.migrate import Migrate, MigrateCommand
 
 from app import app, db
 
-
 app.config.from_object("config.Config")
+db.init_app(app)
 
 migrate = Migrate(app, db)
 manager = Manager(app)
 
-manager.add_command("db", MigrateCommand())
+manager.add_command("db", MigrateCommand)
 
 
 if __name__ == '__main__':

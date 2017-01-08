@@ -31,4 +31,4 @@ class Location(db.Model):
     latitude = db.Column(db.Float)
 
 
-# db.create_all()
+db.create_all()

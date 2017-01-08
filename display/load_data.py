@@ -2,9 +2,18 @@
 import json
 import os
 
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
 import config
-from app import db
 from models import Company, Location
+
+Base = declarative_base()
+engine = create_engine(config.Config.SQLALCHEMY_DATABASE_URI)
+
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
 
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(
@@ -39,7 +48,7 @@ class Loader(object):
                 city=data['baseInfo']['city'],
                 finance_stage=data['baseInfo']['financeStage']
             )
-            db.session.add(company)
+            session.add(company)
             locations = []
             for item in data['location']:
                 loc = Location(
@@ -51,7 +60,7 @@ class Loader(object):
                 )
                 locations.append(loc)
             if locations:
-                db.session.bulk_save_objects(locations)
+                session.bulk_save_objects(locations)
 
         for path in self.traverse():
             with open(path) as f:
@@ -60,7 +69,7 @@ class Loader(object):
                     save_obj(data)
                 except Exception, exp:
                     print "load %s encounters error %s" % (path, str(exp))
-        db.session.commit()
+        session.commit()
 
 
 if __name__ == '__main__':
